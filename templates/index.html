@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Available Jerseys</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f4f4f4;
+    }
+    .container {
+      margin-top: 30px;
+    }
+    .jersey-img {
+      width: 50px;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">JD Sports Jerseys</a>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- Message Alerts -->
+    {% if messages %}
+      <div class="mt-3">
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <!-- Jersey List Table -->
+    <div class="card mt-3">
+      <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+        <span>Available Jerseys</span>
+        <a href="/add/" class="btn btn-sm btn-success">+ Create Jersey</a>
+      </div>
+      <div class="card-body p-0">
+        <table class="table table-striped table-hover mb-0">
+          <thead class="table-light">
+            <tr>
+              <th>#</th>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Team</th>
+              <th>Size</th>
+              <th>Price</th>
+              <th>Stock</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for jersey in jerseys %}
+            <tr>
+              <td>{{ jersey.id }}</td>
+              <td>
+                {% if jersey.image %}
+                  <img src="{{ jersey.image.url }}" class="jersey-img" alt="jersey">
+                {% else %}
+                  <span class="text-muted">No Image</span>
+                {% endif %}
+              </td>
+              <td>{{ jersey.name }}</td>
+              <td>{{ jersey.team }}</td>
+              <td>{{ jersey.size }}</td>
+              <td>${{ jersey.price }}</td>
+              <td>{{ jersey.stock }}</td>
+              <td class="d-flex gap-1">
+                <a href="/edit/{{ jersey.id }}/" class="btn btn-sm btn-primary">Edit</a>
+                <a href="/delete/{{ jersey.id }}/" class="btn btn-sm btn-danger">Delete</a>
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="8" class="text-center text-muted">No jerseys available.</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
