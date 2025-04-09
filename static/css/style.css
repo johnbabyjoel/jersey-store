@@ -1,0 +1,21 @@
+body {
+    background-color: #f4f4f4;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.card-header {
+    font-size: 1.1rem;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+}
+
+.jersey-img {
+    width: 50px;
+    height: auto;
+}
