@@ -27,24 +27,7 @@ def add_jersey(request):
         return redirect('/')
     return render(request, 'create.html')
 
-def edit_jersey(request, id):
-    jersey = get_object_or_404(Jersey, pk=id)
 
-    if request.method == "POST":
-        jersey.name = request.POST.get('name')
-        jersey.team = request.POST.get('team')
-        jersey.size = request.POST.get('size')
-        jersey.price = request.POST.get('price')
-        jersey.stock = request.POST.get('stock')
-
-        if 'image' in request.FILES:
-            jersey.image = request.FILES['image']
-
-        jersey.save()
-        messages.success(request, "Jersey updated successfully.")
-        return redirect('jersey_list')
-
-    return render(request, 'edit_jersey.html', {'jersey': jersey})
     
 def delete_jersey(request, jersey_id):
     try:
