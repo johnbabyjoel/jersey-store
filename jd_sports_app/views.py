@@ -7,25 +7,7 @@ def index(request):
     jerseys = Jersey.objects.all()
     return render(request, 'index.html', {'jerseys': jerseys})
 
-def add_jersey(request):
-    if request.method == 'POST':
-        name = request.POST['name']
-        team = request.POST['team']
-        size = request.POST['size']
-        price = request.POST['price']
-        stock = request.POST['stock']
-        image = request.FILES.get('image')  # use request.FILES
 
-        Jersey.objects.create(
-            name=name,
-            team=team,
-            size=size,
-            price=price,
-            stock=stock,
-            image=image
-        )
-        return redirect('/')
-    return render(request, 'create.html')
 
 def edit_jersey(request, id):
     jersey = get_object_or_404(Jersey, pk=id)
