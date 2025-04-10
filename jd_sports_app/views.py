@@ -46,3 +46,10 @@ def edit_jersey(request, id):
 
     return render(request, 'edit_jersey.html', {'jersey': jersey})
     
+def delete_jersey(request, jersey_id):
+    try:
+        jersey = Jersey.objects.get(id=jersey_id)
+        jersey.delete()
+    except Jersey.DoesNotExist:
+        pass
+    return redirect('/')
