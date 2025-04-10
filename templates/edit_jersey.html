@@ -23,58 +23,6 @@
     </div>
   </nav>
 
-  <div class="container">
-    <div class="card mt-4">
-      <div class="card-header bg-primary text-white">
-        Edit Jersey - {{ jersey.name }}
-      </div>
-      <div class="card-body">
-        <form action="" method="POST" enctype="multipart/form-data">
-          {% csrf_token %}
-          
-          <div class="mb-3">
-            <label for="name" class="form-label">Jersey Name</label>
-            <input type="text" class="form-control" id="name" name="name" value="{{ jersey.name }}" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="team" class="form-label">Team</label>
-            <input type="text" class="form-control" id="team" name="team" value="{{ jersey.team }}" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="size" class="form-label">Size</label>
-            <input type="text" class="form-control" id="size" name="size" value="{{ jersey.size }}" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="price" class="form-label">Price ($)</label>
-            <input type="number" class="form-control" id="price" name="price" step="0.01" value="{{ jersey.price }}" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="stock" class="form-label">Stock</label>
-            <input type="number" class="form-control" id="stock" name="stock" value="{{ jersey.stock }}" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="image" class="form-label">Image (leave empty to keep current)</label>
-            <input type="file" class="form-control" id="image" name="image">
-            {% if jersey.image %}
-              <small class="text-muted">Current: <a href="{{ jersey.image.url }}" target="_blank">View Image</a></small>
-            {% else %}
-              <small class="text-muted">No image uploaded.</small>
-            {% endif %}
-          </div>
-
-          <div class="d-flex justify-content-between">
-            <a href="/" class="btn btn-secondary">Back</a>
-            <button type="submit" class="btn btn-primary">Update Jersey</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
